@@ -23,14 +23,5 @@ layout: blog
 	</article>
 	{% endfor %}
 	</div>
-	<div class="sidebar">
-		<h4>Search</h4>
-		<div class="posts-search">
-			<!-- = form_tag(posts_path, :method => 'get') do
-				= text_field_tag :search, params[:search], placeholder: 'Search Posts' -->
-				<button class="btn primary-btn">Submit</button>
-				
-			<a class="clear-results" href="/posts">Clear Results</a>
-		</div>
-	</div>
+	{% include sidebar.html %}
 </div>

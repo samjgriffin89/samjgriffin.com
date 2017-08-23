@@ -21,7 +21,7 @@ overview: true
 	</aside>
 </section>
 <section class="recent-posts">
-	{% for post in site.posts limit 3 %}
+	{% for post in site.posts limit: 3 %}
 	<section>
 		<h3>{{ post.title }}</h3>
 		{% if post.subtitle %}
