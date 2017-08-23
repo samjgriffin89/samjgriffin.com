@@ -1,0 +1,39 @@
+---
+layout: default
+overview: true
+---
+
+<section class="about-me">
+	<div class="about-me--img">
+		<a class="b-polygon b-polygon_hexagon" href="/">
+	    	<span class="b-polygon-part">
+	        	<span class="b-polygon-part b-polygon-part_content">
+					<img src="/images/me-and-dog.jpg" alt="Sam Griffin with his dog" />
+				</span>
+			</span>
+		</a>
+	</div>
+
+	<aside class="about-me--content">
+		<p>I am a full stack developer currently working at <a href="http://www.cardfree.com">CARDFREE</a> building out RESTful services that supports our mobile apps and customer portal. For the most part I am working in .NET using Web API, but am becoming more immersed in RoR and grails.</p>
+
+		<p>I am originally from Boston, but have been living in Colorado for some time now. In my spare time I try to keep pace with my energentic golden, hike and ski, and occassionally post something interesting.</p>
+	</aside>
+</section>
+<section class="recent-posts">
+	{% for post in site.posts limit 3 %}
+	<section>
+		<h3>{{ post.title }}</h3>
+		{% if post.subtitle %}
+		<h4>{{ post.subtitle }}</h4>
+		{% endif %}
+		<figure>
+			<img src="http://placehold.it/400x200&text={{post.categories}}" alt="{{post.categories}}" />
+			<figcaption>
+				<p>{{ post.abstract }}</p> <!-- TODO: Truncation -->
+				<a href="{{ post.url }}">Read More</a>
+			</figcaption>
+		</figure>
+	</section>
+	{% endfor %}
+</section>
