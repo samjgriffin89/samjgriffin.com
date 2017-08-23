@@ -1,0 +1,26 @@
+﻿img {
+    width: 100%;
+}
+
+.wrapper {
+	overflow: hidden;
+	margin: 0 auto;
+	background: #fff;
+}
+
+.main-content {
+    margin-top: 50px;
+
+    .page-title {
+    	width: 85%;
+    	margin: 0 auto;
+    	font-size: 2em;
+    }
+}
+
+.clear-results {
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 5px;
+    color: $primaryColor;
+}

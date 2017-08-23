@@ -1,0 +1,148 @@
+.posts-wrapper, .post-wrapper {
+	@extend .flex-display;
+}
+
+.posts, .post-wrapper .post {
+	flex-basis: 100%;
+	border-right: 1px solid #eee;
+
+    @include bp(tablet){
+        flex-basis: 70%;
+    }
+
+	a {
+		color: $primaryColor;
+	}
+
+    img {
+    	width: auto;
+    	max-width: 100%;
+    }
+
+    .center {
+    	text-align: center;
+    }
+}
+
+.posts article + article {
+	border-top: 3px solid $primaryColor;
+}
+
+.sidebar {
+    display: none;
+    
+    @include bp(tablet){
+        display: block;
+        flex-basis: 30%;
+	    padding-left: 20px;
+    }
+
+	> div {
+		margin-top: 1em;
+	}
+
+	h4 {
+		text-transform: uppercase;
+		margin: 0 0 1em;
+	}
+
+	.posts-search {
+		input {
+			width: 180px;
+			line-height: 1.7;
+			margin-right: 10px;
+		}
+
+		.primary-btn {
+			position: relative;
+			bottom: 1px;
+		}
+	}
+}
+
+.post {
+    color: $darkGrey;
+    width: 80%;
+    margin: 0 auto;
+	padding: 20px;
+
+	hgroup {
+		overflow: hidden;
+	}
+
+	h3, h4, h5 {
+		margin: 0;
+	}
+
+	.post-title {
+		float: left;
+		width: 80%;
+	}
+
+	h3 {
+		margin-bottom: 5px;
+		font-size: 1.75em;
+	}
+
+	h5 {
+		float: right;
+	}
+
+	.tags {
+		display: inline-block;
+	}
+}
+
+.post-wrapper .post {
+	padding: 0 2%;	
+}
+
+.post--comments {
+	margin: 25px 0;
+	
+	h5 {
+		float: none;
+		font-size: 20px;
+	}
+
+	.new_comment {
+		overflow: hidden;
+
+		label {
+			width: 150px;
+			display: inline-block;
+		}
+
+		input[type="text"] {
+			width: 50%;
+		}
+
+		textarea {
+			width: 75%;
+			height: 100px;
+		}
+
+		input[type="submit"] {
+			float: right;
+		}
+	}
+}
+
+.edit_post, .new_post {
+	width: 80%;
+	margin: 0 auto;
+
+	label {
+		width: 150px;
+		display: inline-block;
+	}
+
+	input[type="text"] {
+		width: 50%;
+	}
+
+	textarea {
+		width: 75%;
+		height: 350px;
+	}
+}
