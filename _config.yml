@@ -16,6 +16,7 @@ sass:
 
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
 
 exclude:
   - .gitignore
