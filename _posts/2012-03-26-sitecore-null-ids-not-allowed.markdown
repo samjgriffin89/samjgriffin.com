@@ -3,7 +3,7 @@ layout: post
 title:  "Sitecore Null ids are not allowed error"
 date:   2012-03-26
 tags: Sitecore
-abstract: I attempted to view the presentation details of an item or preview the item, a Sitecore error would throw stating: Null ids are not allowed.
+abstract: I attempted to view the presentation details of an item or preview the item, a Sitecore error would throw stating, Null ids are not allowed.
 ---
 So I ran into an issue today when trying to set up a new project with Sitecore 6.3.1 (110112) on Windows XP with IIS 5. The project ran locally and after installing Sitecore, I was able to browse through the content tree as well. However, when I attempted to view the presentation details of an item or preview the item, a Sitecore error would throw stating: Null ids are not allowed. Here is what the error looks like below
 
