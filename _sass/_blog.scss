@@ -58,6 +58,14 @@
 			bottom: 1px;
 		}
 	}
+
+	.about--side {
+		margin-right: 50px;
+
+		a {
+			color: $primaryColor;
+		}
+	}
 }
 
 .post {
