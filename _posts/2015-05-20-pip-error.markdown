@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Pip Type Error on Git Push to Heroku App"
+date:   2015-05-20
+tags: Git, Heroku, PowerShell
+abstract: When I was trying to create my requirements.txt file for my application in PowerShell, I first ran "pip freeze > requirements.txt". However, when I tried to commit to Heroku, I received an error.
+---
+When I was trying to create my requirements.txt file for my application in PowerShell, I first ran "pip freeze > requirements.txt". However, when I tried to commit to Heroku, I received this error:
+
+![Pip Error](/images/blog/pip-error.png "Pip Error")
+
+This happens because PowerShell outputs UTF-16 by default. Another way to fix it is by using the out-file command with an ascii encoding specified:
+
+{% highlight bash %}
+pip freeze | out-file -enc ascii requirements.txt
+{% endhighlight %}
+
+This makes it work with PowerShell, or the alternative is to just use the plain old command prompt.

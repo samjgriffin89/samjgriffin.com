@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "Solution to Handler “PageHandlerFactory-Integrated” has a bad module “ManagedPipelineHandler” in its module list"
+date:   2012-08-01
+tags: .NET, IIS
+abstract: Adding a full featured .NET Framwork to fix 'Handler “PageHandlerFactory-Integrated” has a bad module “ManagedPipelineHandler” in its module list'
+---
+So if you are here you are probably getting an internal 500 error from your application. The reason this is occurring is because ASP .NET is not fully installed with IIS. This may happen even if you do check the box in the "Add Feature" dialogue. Luckily this issue is very easy to fix. You just need to run this command from the command prompt:
+
+{% highlight bash %}
+%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_regiis.exe -i
+{% endhighlight %}
+
+Or if you have a 32 bit system, run:
+
+{% highlight bash %}
+%windir%\Microsoft.NET\Framework\v4.0.21006\aspnet_regiis.exe -i
+{% endhighlight %}
+
+That's it! This will complete the install for ASP .NET and it should resolve the issue. Happy coding!

@@ -17,10 +17,10 @@ Recently I was working on a SQL script that would pull values for a one-to-many 
 
 And we will end up with:
 
-|Identifier|Values|
+|Identifier | | | | | Values|
 |----------|------|
-|1|Value1, Value2, Value3|
-|2|Value4, Value5|
+|1| | | | | Value1, Value2, Value3|
+|2| | | | | Value4, Value5|
 
 In order to do that, we are going to select the value we want with the delimiter and use SQL's XML PATH method to combine the rows together from the two tables
 

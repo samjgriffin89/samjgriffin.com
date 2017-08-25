@@ -1,0 +1,31 @@
+---
+layout: post
+title:  "Sitecore 6.5 Bug"
+subtitle: "System.InvalidOperationException: fieldTypeItem"
+date:   2012-06-24
+tags: Sitecore, .NET, C#
+abstract: I have been working on a project using Sitecore 6.5 rev 111230. I had to create new profile templates for my Sitecore managed users and ran into an issue where I received this error when I tried to access the Inheritance Tab on any template in the Core database.
+---
+So recently I have been working on a project using Sitecore 6.5 rev 111230. I had to create new profile templates for my Sitecore managed users and ran into an issue where I received this error when I tried to access the Inheritance Tab on any template in the Core database
+
+<p class="center">
+	<img src="/images/blog/fieldtypeitem-error.png" alt="System.InvalidOperationException: fieldTypeItem Sitecore Error">
+</p>
+
+After looking on the web for a possible solution or at least a hint to what might be happening, I had no clue what was happening. Thankfully, Sitecore has great support and within a couple hours got a response from their team. Apparently I found a bug with Sitecore 6.5. Currently there is not a concrete solution (because I am still running into inheritance issues), however, there is a work around to get rid of that pesky error.
+
+> As a workaround, please set field type of the __Owner field of /sitecore/templates/System/Templates/Sections/Security item in the core database to Text or Single-Line Text.
+
+So, for those who have no idea what that means. What you need to do is go into the Core database and go to the Security template, which is under the path given above. It looks like this in the Sitecore tree
+
+<p class="center">
+	<img src="/images/blog/Security-Template.png" alt="Security Template in Sitecore Tree">
+</p>
+
+Once you get there, (as stated above) just change that blank field type to a Single-Line Text field so it looks like this:
+
+<p class="center">
+	<img src="/images/blog/owner-field.png" alt="_owner field">
+</p>
+
+And that's it! You should be all set for now. I will keep you updated for when a bug fix is actually released by Sitecore, but until then I hope this helps.
