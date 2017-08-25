@@ -6,19 +6,19 @@ layout: default
 	<article class="post">
 		<hgroup>
 			<div class="post-title">
-				<h3>{{ post.title }}</h3>
-				{% if post.subtitle %}
-				<h4>{{ post.subtitle }}</h4>
+				<h3>{{ page.title }}</h3>
+				{% if page.subtitle %}
+				<h4>{{ page.subtitle }}</h4>
 				{% endif %}
 			</div>
-			<h5>{{ post.date | date: "%B %e, %Y" }}</h5>
+			<h5>{{ page.date | date: "%B %e, %Y" }}</h5>
 		</hgroup>
 		<p>
 		{{ content }}
 		</p>	
 		<p>
 			<strong>Tags:</strong>
-			{{ post.categories }}
+			{{ page.tags }}
 		</p>
 		<a href="{{ site.base_url }}/posts">Back to Posts</a>
 	</article>

@@ -1,6 +1,7 @@
 ---
 layout: default
 overview: true
+title: Homepage
 ---
 
 <section class="about-me">
@@ -28,10 +29,10 @@ overview: true
 		<h4>{{ post.subtitle }}</h4>
 		{% endif %}
 		<figure>
-			<img src="http://placehold.it/400x200&text={{post.categories}}" alt="{{post.categories}}" />
+			<img src="http://placehold.it/400x200&text={{post.tags}}" alt="{{post.tags}}" />
 			<figcaption>
 				<p>{{ post.abstract }}</p> <!-- TODO: Truncation -->
-				<a href="{{site.base_url}}/{{ post.url }}">Read More</a>
+				<a href="{{site.base_url}}{{ post.url }}">Read More</a>
 			</figcaption>
 		</figure>
 	</section>
