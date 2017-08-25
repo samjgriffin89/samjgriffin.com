@@ -2,7 +2,7 @@
 layout: post
 title:  "NuGet Add Reference Error While Installing Package"
 subtitle: "Package requires NuGet client version 'x.x.x'"
-date:   2016-10-23
+date:   2015-11-03
 tags: Visual Studio, NuGet
 abstract: One quick thing to check is that your NuGet Visual Studio Extension (Tools > Extenstions and Update) is up to date.
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Request format is unrecognized for URL unexpectedly ending in [method]"
-date:   2013-01-06
+date:   2015-01-06
 tags: .NET, C#
 abstract: An easy configuration fix for the error, Request format is unrecognized for URL unexpectedly ending in [method]
 ---

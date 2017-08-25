@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "RSA Encryption using X509 Certificates"
-date:   2016-10-23
+date:   2015-06-26
 tags: C#, MMC, RSA, Encyrption, X509Certificate, PFX, Windows
 abstract: If you want need to delete your remote branch using Git, you can write it out fully or shorthand.
 ---

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Deleting a Branch with Git"
-date:   2016-10-23
+date:   2015-11-02
 tags: Git
 abstract: If you want need to delete your remote branch using Git, you can write it out fully or shorthand.
 ---
