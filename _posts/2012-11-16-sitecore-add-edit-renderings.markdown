@@ -9,7 +9,7 @@ abstract: I recently performed an upgrade to Sitecore 6.5 rev 120706 and ran int
 So I recently performed an upgrade to Sitecore 6.5 rev 120706 and ran into an issue where I could not add or edit any renderings in the presentation details of an item. Whenever I tried to add a rendering, I would get this lovely message:
 
 <p class="center">
-   <img src="/assets/blog/please-select-a-rendering.png" alt="Please select a rendering">
+   <img src="/images/blog/please-select-a-rendering.png" alt="Please select a rendering">
 </p>
 
 After digging around for a bit, I found that I was missing a key template: Rendering Options, which the Sublayout template needs to inherit. The rendering options template can be found here: */sitecore/templates/System/Layout/Sections/Rendering Options*.
