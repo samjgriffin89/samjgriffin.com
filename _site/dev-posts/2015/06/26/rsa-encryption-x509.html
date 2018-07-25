@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sam J Griffin | RSA Encryption using X509 Certificates</title>
+    <meta name="description" content="I am Sam Griffin, a full stack developer currently working at Cardfree,building out RESTful services that supports our mobile apps and customer portal.  For the most part I am working in .NET using Web API, but am becoming more immersed in RoR and grails.
+" >
+    <meta name="google-site-verification" content="cT3CHL7PrHfUex3GIuLkyjnk-deuZyedUYGqJGOKGEc" />
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="alternate" type="application/rss+xml" title="Your awesome title" href="/feed.xml">
+  </head>
+  <body>
+    <div id="wrapper" class="wrapper">
+      
+      <header class="header">
+  <hgroup>
+  <h1>
+  <a href="/">Sam J Griffin</a>
+  </h1>
+  <h2>
+  <a href="/">Full Stack Developer</a>
+  </h2>
+  </hgroup>
+  <nav id="primaryNav" class="navigation">
+    <ul>
+      <li>
+        <a href="/travel">Travel</a>
+      </li>
+      <li>
+        <a href="/dev-posts">Tech & Coding</a>
+      </li>
+      <li>
+        <a href="https://github.com/samjgriffin89">Projects</a>
+      </li>
+      <li>
+        <a href="https://gist.github.com/samjgriffin89">Code Snippets</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+      <section class="main-content">
+      	<section class="post-wrapper">
+	<article class="post">
+		<hgroup>
+			<div class="post-title">
+				<h3>RSA Encryption using X509 Certificates</h3>
+				
+			</div>
+			<h5>June 26, 2015</h5>
+		</hgroup>
+		<p>
+		<p>Recently I had to implement RSA encryption for a project at work and thought I’d share the end result since it looked simple at first, and ended up being a bit more of a pain. Our approach was to import a pfx certificate into the MMC, and then to use the X509Certificate to handle producing our public and private keys.</p>
+
+<p>The first step is to get your pfx certificate into the MMC. Run the console and under File, go to “Add/Remove Snap-in”. Add “Certificates” and when prompted make sure it is a “Computer Account” on your “Local Computer”. Now you should see a Certificates child under the Console root.</p>
+
+<p>Now that you have that, go under Certificates (in the left browsing sidebar) and click into Personal &gt; Certificates. Right-click, and under “All tasks” click “Import” and browse to your pfx certificate. If there is a password associated with the certificate, you will be prompted for it in the wizard that shows for the import process.</p>
+
+<p>Now that the certificate is in the MMC, you can reference it in your code through the X509Store. When you find your certificate, the PrivateKey and PublicKey.Key can be cast as the RSACryptoServiceProvider used for encryption/decryption. You can refer to the code on my <a href="https://gist.github.com/samjgriffin89/22d2ab13ec9403614468">RSA code snippet</a> on Gist.</p>
+
+
+		</p>	
+		<p>
+			<strong>Tags:</strong>
+			C#,MMC,RSA,Encyrption,X509Certificate,PFX,Windows
+		</p>
+		<a href="/posts">Back to Posts</a>
+	</article>
+	<div class="sidebar">
+	<!-- <h4>Search</h4>
+	<div class="posts-search">
+		<input type="text" placeholder="Search Posts" />
+		<button class="btn primary-btn">Submit</button>
+		
+		<a class="clear-results" href="/posts">Clear Results</a>
+	</div> -->
+	<h4>About the Author</h4>
+	<div class="about--side">
+		<p>I am a senior .NET engineer currently working at <a href="http://www.cardfree.com">CARDFREE</a> building out RESTful services to supports our mobile and web apps. My focus currently is around scalability, security, and ensuring our solutions are maintainable.</p>
+
+<p>Originally from Boston, but have been living in Denver for several years now. In my spare time I try to keep pace with my energentic golden, hike and ski, and occassionally post something interesting.</p>
+	</div>
+</div>
+</section>
+      </section>
+    </div>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-24433484-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sam J Griffin | Sitecore 7 PDF and Document Content Search</title>
+    <meta name="description" content="I am Sam Griffin, a full stack developer currently working at Cardfree,building out RESTful services that supports our mobile apps and customer portal.  For the most part I am working in .NET using Web API, but am becoming more immersed in RoR and grails.
+" >
+    <meta name="google-site-verification" content="cT3CHL7PrHfUex3GIuLkyjnk-deuZyedUYGqJGOKGEc" />
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="alternate" type="application/rss+xml" title="Your awesome title" href="/feed.xml">
+  </head>
+  <body>
+    <div id="wrapper" class="wrapper">
+      
+      <header class="header">
+  <hgroup>
+  <h1>
+  <a href="/">Sam J Griffin</a>
+  </h1>
+  <h2>
+  <a href="/">Full Stack Developer</a>
+  </h2>
+  </hgroup>
+  <nav id="primaryNav" class="navigation">
+    <ul>
+      <li>
+        <a href="/travel">Travel</a>
+      </li>
+      <li>
+        <a href="/dev-posts">Tech & Coding</a>
+      </li>
+      <li>
+        <a href="https://github.com/samjgriffin89">Projects</a>
+      </li>
+      <li>
+        <a href="https://gist.github.com/samjgriffin89">Code Snippets</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+      <section class="main-content">
+      	<section class="post-wrapper">
+	<article class="post">
+		<hgroup>
+			<div class="post-title">
+				<h3>Sitecore 7 PDF and Document Content Search</h3>
+				
+			</div>
+			<h5>April 28, 2015</h5>
+		</hgroup>
+		<p>
+		<p>Recently I had to implement PDF content search for a project so content editors could find files stored in Sitecore easily. With Sitecore 7, since search is built in, you would think this would be a piece of cake. However, I ran into a number of issues. With Sitecore 7, you should be able to install an IFilter such as Adobe or Foxit, and search should work once your indexes are rebuilt. However, the <a href="https://www.foxitsoftware.com/products/pdf-ifilter/">Foxit IFitler</a> was not a free option, so that was out for me (this is the recommend IFilter from Sitecore). The Adobe IFilter presented issues on its own that Sitecore has identified as a defect. If you want to use the <a href="http://www.adobe.com/support/downloads/detail.jsp?ftpID=4025">Adobe IFilter</a> you will need to follow these steps for content search to work:</p>
+
+<ol>
+  <li>
+    <p>Copy all the Adobe iFilter “.dll” files into the <em>\System32\Inetsrv</em> folder. This is the working directory for IIS on Windows Server. The Adobe iFilter “.dll” files are stored in the <em>C:\Program Files\Adobe\Adobe PDF iFilter 9 for 64-bit platforms\bin</em> folder by default. Also, you can use the “IFilter Explorer” tool to detect the folder where the “.dll” files are stored using this <a href="http://www.citeknet.com/Products/IFilters/IFilterExplorer/tabid/62/Default.aspx">IFilter Tool</a>. For more details please see <a href="http://screencast.com/t/xmWukanM">the screenshot</a>.</p>
+  </li>
+  <li>
+    <p>Delete all the files under the <em>Website/App_Data/MediaCache</em> folder.</p>
+  </li>
+  <li>
+    <p>Rebuild the Sitecore Search Indexes (Sitecore -&gt; Control Panel -&gt; Indexing -&gt; Indexing Manager).</p>
+  </li>
+  <li>
+    <p>Clear the Sitecore cache (the http://{hostname}/sitecore/admin/cache.aspx tool).</p>
+  </li>
+  <li>
+    <p>Restart IIS.</p>
+  </li>
+</ol>
+
+<p>Unfortunately, these steps did not work for me. When I would test using <a href="https://code.google.com/archive/p/luke/downloads">Luke</a> the _content field would keep coming in blank for all of my PDFs and documents. If you want more information on how to use Luke, check out John West’s blog post: <a href="http://www.sitecore.net/Community/Technical-Blogs/Getting-to-Know-Sitecore/Posts/2013/06/Using-Luke-to-Understand-Sitecore-7-Search.aspx">Using Luke to Understand Sitecore 7 Search</a>. However, back to the issue at hand - So Both IFilters were not working for me, so I decided to write my own method for parsing the content using PDFBox.NET. To do that I first grabbed the most recent DLLs I could find for PDF Box. Here is the complete zip of the DLLs: <a href="/images/blog/PDFBox.NET-1.7.0.zip">PDFBox.NET-1.7.0 DLLs</a>, but for the content search, all I needed to add was references to:</p>
+
+<ul>
+  <li>bcmail-jdk15-1.44.dll</li>
+  <li>bcprov-jdk15-1.44.dll</li>
+  <li>commons-logging.dll</li>
+  <li>EPocalipse.IFilter.dll (Document search)</li>
+  <li>fontbox-1.7.0.dll</li>
+  <li>IKVM.OpenJDK.Core</li>
+  <li>IKVM.OpenJDK.SwingAWT</li>
+  <li>IKVM.OpenJDK.Util</li>
+  <li>IKVM.Runtime</li>
+  <li>pdfbox-1.7.0.dll</li>
+</ul>
+
+<p>Once you add those you should be all good to build out the computed field that will override the current _content computed field defined in your Sitecore.ContentSearch.Lucene.DefaultIndexConfiguration.config file. First let’s create the computed field class:</p>
+
+<figure class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">EPocalipse.IFilter</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">ikvm.io</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">org.apache.pdfbox.pdmodel</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">org.apache.pdfbox.util</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Sitecore.ContentSearch</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Sitecore.ContentSearch.ComputedFields</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Sitecore.ContentSearch.Diagnostics</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Sitecore.Data.Items</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">Sitecore.Diagnostics</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">MyProject.Framework.Indexing.ComputedFields</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">class</span> <span class="nc">MediaContentExtractor</span> <span class="p">:</span> <span class="n">IComputedIndexField</span>
+    <span class="p">{</span>
+
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">FieldName</span>
+        <span class="p">{</span>
+            <span class="k">get</span><span class="p">;</span>
+            <span class="k">set</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">public</span> <span class="kt">string</span> <span class="n">ReturnType</span>
+        <span class="p">{</span>
+            <span class="k">get</span><span class="p">;</span>
+            <span class="k">set</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="kt">object</span> <span class="nf">ComputeFieldValue</span><span class="p">(</span><span class="n">IIndexable</span> <span class="n">indexable</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Item</span> <span class="n">item</span> <span class="p">=</span> <span class="p">(</span><span class="n">SitecoreIndexableItem</span><span class="p">)</span><span class="n">indexable</span><span class="p">;</span>
+            <span class="n">Assert</span><span class="p">.</span><span class="nf">ArgumentNotNull</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="s">"item"</span><span class="p">);</span>
+
+            <span class="kt">object</span> <span class="n">result</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">item</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">item</span><span class="p">.</span><span class="n">Paths</span><span class="p">.</span><span class="n">IsMediaItem</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">MediaItem</span> <span class="n">_media</span> <span class="p">=</span> <span class="p">(</span><span class="n">MediaItem</span><span class="p">)</span><span class="n">item</span><span class="p">;</span>
+                <span class="kt">string</span> <span class="n">ext</span> <span class="p">=</span> <span class="n">_media</span><span class="p">.</span><span class="n">Extension</span><span class="p">.</span><span class="nf">ToLower</span><span class="p">();</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">ext</span> <span class="p">==</span> <span class="s">"pdf"</span> <span class="p">||</span> <span class="n">_media</span><span class="p">.</span><span class="n">MimeType</span> <span class="p">==</span> <span class="s">"application/pdf"</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">result</span> <span class="p">=</span> <span class="nf">ParsePDF</span><span class="p">(</span><span class="n">_media</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">ext</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="s">"doc"</span><span class="p">)</span> <span class="p">||</span> <span class="n">ext</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="s">"xls"</span><span class="p">)</span> <span class="p">||</span> <span class="n">ext</span><span class="p">.</span><span class="nf">Contains</span><span class="p">(</span><span class="s">"ppt"</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="n">result</span> <span class="p">=</span> <span class="nf">ParseOfficeDoc</span><span class="p">(</span><span class="n">_media</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;
+</span>        <span class="c1">/// Function to parse PDF content
+</span>        <span class="c1">/// &lt;/summary&gt;
+</span>        <span class="c1">/// &lt;param name="mediaItem"&gt;&lt;/param&gt;
+</span>        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
+</span>        <span class="k">private</span> <span class="kt">string</span> <span class="nf">ParsePDF</span><span class="p">(</span><span class="n">MediaItem</span> <span class="n">mediaItem</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">PDDocument</span> <span class="n">doc</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+            <span class="kt">string</span> <span class="n">content</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+            <span class="n">InputStreamWrapper</span> <span class="n">wrapper</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">mediaItem</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">try</span> 
+                <span class="p">{</span>
+                    <span class="n">wrapper</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">InputStreamWrapper</span><span class="p">(</span><span class="n">mediaItem</span><span class="p">.</span><span class="nf">GetMediaStream</span><span class="p">());</span>
+                    <span class="n">doc</span> <span class="p">=</span> <span class="n">PDDocument</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">wrapper</span><span class="p">);</span>
+                    <span class="n">content</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">PDFTextStripper</span><span class="p">().</span><span class="nf">getText</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">CrawlingLog</span><span class="p">.</span><span class="n">Log</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(),</span> <span class="n">ex</span><span class="p">);</span>
+                    <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">finally</span>
+                <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">((</span><span class="n">doc</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="p">(</span><span class="n">wrapper</span> <span class="p">!=</span> <span class="k">null</span><span class="p">))</span>
+                    <span class="p">{</span>
+                        <span class="n">doc</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+                        <span class="n">wrapper</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(!</span><span class="kt">string</span><span class="p">.</span><span class="nf">IsNullOrWhiteSpace</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="n">content</span> <span class="p">=</span> <span class="n">content</span><span class="p">.</span><span class="nf">Replace</span><span class="p">(</span><span class="s">"\r\n"</span><span class="p">,</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">).</span><span class="nf">ToLower</span><span class="p">();</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="n">content</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">/// &lt;summary&gt;
+</span>        <span class="c1">/// Function to parse Office document
+</span>        <span class="c1">/// &lt;/summary&gt;
+</span>        <span class="c1">/// &lt;param name="mediaItem"&gt;&lt;/param&gt;
+</span>        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
+</span>        <span class="k">private</span> <span class="kt">string</span> <span class="nf">ParseOfficeDoc</span><span class="p">(</span><span class="n">MediaItem</span> <span class="n">mediaItem</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kt">string</span> <span class="n">content</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+            <span class="k">try</span>
+            <span class="p">{</span>
+                <span class="n">Stream</span> <span class="n">streamReader</span> <span class="p">=</span> <span class="n">mediaItem</span><span class="p">.</span><span class="nf">GetMediaStream</span><span class="p">();</span>
+                <span class="n">TextReader</span> <span class="n">reader</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">FilterReader</span><span class="p">(((</span><span class="n">FileStream</span><span class="p">)</span><span class="n">streamReader</span><span class="p">).</span><span class="n">Name</span><span class="p">);</span>
+                <span class="k">using</span> <span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">content</span> <span class="p">=</span> <span class="n">reader</span><span class="p">.</span><span class="nf">ReadToEnd</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">CrawlingLog</span><span class="p">.</span><span class="n">Log</span><span class="p">.</span><span class="nf">Error</span><span class="p">(</span><span class="n">ex</span><span class="p">.</span><span class="nf">ToString</span><span class="p">(),</span> <span class="n">ex</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(!</span><span class="kt">string</span><span class="p">.</span><span class="nf">IsNullOrWhiteSpace</span><span class="p">(</span><span class="n">content</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="n">content</span> <span class="p">=</span> <span class="n">content</span><span class="p">.</span><span class="nf">Replace</span><span class="p">(</span><span class="s">"\r\n"</span><span class="p">,</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">).</span><span class="nf">ToLower</span><span class="p">();</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="n">content</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>First we figure out the type of file we are indexing, and then pass it to the proper method to parse the content. In each function we pass the media item’s stream to the proper text stripper or text reader and then have PDFBox handle getting the content of the document or PDF. If we get content out of the file, then we do a replace on \r\n, which represent carriage returns and line break, and lower the entire content so when we do a compare later, we don’t run into any mismatches in case.</p>
+
+<p>Now that we have our custom class, we need to update the _content computed field assembly reference:</p>
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;fields</span> <span class="na">hint=</span><span class="s">"raw:AddComputedIndexField"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;field</span> <span class="na">fieldName=</span><span class="s">"_content"</span> <span class="na">storageType=</span><span class="s">"no"</span> <span class="na">indexType=</span><span class="s">"tokenized"</span><span class="nt">&gt;</span>MyProject.Framework.Indexing.ComputedFields.MediaContentExtractor, MyProject.Framework<span class="nt">&lt;/field&gt;</span>
+<span class="nt">&lt;/fields&gt;</span></code></pre></figure>
+
+<p>Now we have all the ground work in place. Go into your Sitecore instance and rebuild your index. Once this finishes you should be all good to go with your content search.</p>
+
+<p>Happy Coding!</p>
+
+
+		</p>	
+		<p>
+			<strong>Tags:</strong>
+			Sitecore,C#,PDFBox,ContentSearch
+		</p>
+		<a href="/posts">Back to Posts</a>
+	</article>
+	<div class="sidebar">
+	<!-- <h4>Search</h4>
+	<div class="posts-search">
+		<input type="text" placeholder="Search Posts" />
+		<button class="btn primary-btn">Submit</button>
+		
+		<a class="clear-results" href="/posts">Clear Results</a>
+	</div> -->
+	<h4>About the Author</h4>
+	<div class="about--side">
+		<p>I am a senior .NET engineer currently working at <a href="http://www.cardfree.com">CARDFREE</a> building out RESTful services to supports our mobile and web apps. My focus currently is around scalability, security, and ensuring our solutions are maintainable.</p>
+
+<p>Originally from Boston, but have been living in Denver for several years now. In my spare time I try to keep pace with my energentic golden, hike and ski, and occassionally post something interesting.</p>
+	</div>
+</div>
+</section>
+      </section>
+    </div>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-24433484-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>

@@ -2,6 +2,12 @@
     width: 100%;
 }
 
+@include bp(tablet){
+    body {
+        padding-bottom: 50px;
+    }
+}
+
 .wrapper {
 	overflow: hidden;
 	margin: 0 auto;
