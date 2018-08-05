@@ -54,10 +54,7 @@ PLATFORMS
 DEPENDENCIES
   jekyll (= 3.5.2)
   jekyll-feed (~> 0.6)
-<<<<<<< HEAD
-=======
   jekyll-paginate
->>>>>>> develop
   jekyll-sitemap
   minima (~> 2.0)
   tzinfo-data
