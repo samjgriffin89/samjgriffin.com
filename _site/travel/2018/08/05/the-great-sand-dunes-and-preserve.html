@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Sam J Griffin | RSA Encryption using X509 Certificates</title>
+    <title>Sam J Griffin | The Great Sand Dunes & Preserve</title>
     <meta property="og:title" content="Sam J Griffin | Engineer & Kid at Heart" />
     <meta property="og:description" content="I'm an engineer. I'm a kid at heart. I enjoy solving complex problems like scalability of applications, and also sledding down sand dunes at 40mph." />
     <meta property="og:image" content="https://samjgriffin.com/images/me_at_the_dunes.jpg" />
@@ -51,25 +51,42 @@
 	<article class="post">
 		<hgroup>
 			<div class="post-title">
-				<h3>RSA Encryption using X509 Certificates</h3>
+				<h3>The Great Sand Dunes & Preserve</h3>
+				
+				<h4>Camping & Exploring the Dunes</h4>
 				
 			</div>
-			<h5>June 26, 2015</h5>
+			<h5>August  5, 2018</h5>
 		</hgroup>
 		<p>
-		<p>Recently I had to implement RSA encryption for a project at work and thought I’d share the end result since it looked simple at first, and ended up being a bit more of a pain. Our approach was to import a pfx certificate into the MMC, and then to use the X509Certificate to handle producing our public and private keys.</p>
+		<p>The Great Sand Dunes &amp; Preserve are a must see treasure hidden away in the mountains in the Colorado. I’ve been wanting to camp and explore the area since I first moved to Colorado several years ago. So finally, we adventured our way out and set up camp just outside the park for a weekend of hiking, sledding, and exploring the dunes. Even from our campsite you can tell how massive these sand dunes are.</p>
 
-<p>The first step is to get your pfx certificate into the MMC. Run the console and under File, go to “Add/Remove Snap-in”. Add “Certificates” and when prompted make sure it is a “Computer Account” on your “Local Computer”. Now you should see a Certificates child under the Console root.</p>
+<p class="center">
+	<img src="/images/travel/dunes-from-camp-site.jpg" alt="Home base at the dunes" />
+</p>
 
-<p>Now that you have that, go under Certificates (in the left browsing sidebar) and click into Personal &gt; Certificates. Right-click, and under “All tasks” click “Import” and browse to your pfx certificate. If there is a password associated with the certificate, you will be prompted for it in the wizard that shows for the import process.</p>
+<p>It can definitely be tough to get a spot camping, especially if you are trying to get a site inside the park at Piñon Flats. We left pretty early Friday afternoon, so we were able to get a good spot at the Great Sand Dunes Oasis. Pretty solid spot, and nice since there is a store for all the camping things you may have forgotten. Also where you can rent the sleds/boards before heading over to the dunes. Definitely get there early, line can get long and it’s not the fastest moving line either.</p>
 
-<p>Now that the certificate is in the MMC, you can reference it in your code through the X509Store. When you find your certificate, the PrivateKey and PublicKey.Key can be cast as the RSACryptoServiceProvider used for encryption/decryption. You can refer to the code on my <a href="https://gist.github.com/samjgriffin89/22d2ab13ec9403614468">RSA code snippet</a> on Gist.</p>
+<p>Unfortunately for us, the river had been dried up for months at this point, but that was expected going at the end of July. Hiking was tough as hell, one step forward three steps back in the soft sand, but so worth it. Took us a few hours, to hike to the top, mostly due to sledding stops and having to retrace our steps several times. You don’t really have perspective of how large these dunes are until you are on them. You can just make myself and two friends walking the crest of the dunes in the top right in the picture below.</p>
 
+<p class="center">
+	<img src="/images/travel/hiking-the-dunes.jpg" alt="Hiking the crest of the dunes" />
+</p>
+
+<p>Here is the reward for our perseverance, the back side of the dunes you can’t see until you hike passed the crestline.</p>
+
+<p class="center">
+	<img src="/images/travel/back-peak-dunes.jpg" alt="Back side of the dunes" />
+</p>
+
+<p>Now while hiking up with the sleds was tough, it paid off tenfold on our way down. Highly recommend the sleds! If you pick the right slopes, you really get going fast. According to the shop, up to 40mph, which I don’t think we came close to, but certainly tried our best.</p>
+
+<p>10/10 would recommend and definitely a place I plan on coming back to in the future to re-explore and experience again.</p>
 
 		</p>	
 		<p>
 			<strong>Tags:</strong>
-			C#,MMC,RSA,Encyrption,X509Certificate,PFX,Windows
+			Colorado
 		</p>
 		<a href="/posts">Back to Posts</a>
 	</article>
