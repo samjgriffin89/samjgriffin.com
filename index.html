@@ -16,13 +16,32 @@ title: Homepage
 	</div>
 
 	<aside class="about-me--content">
-		<p>I am a full stack developer currently working at <a href="http://www.cardfree.com">CARDFREE</a> building out RESTful services that supports our mobile apps and customer portal. For the most part I am working in .NET using Web API, but am becoming more immersed in RoR and grails.</p>
-
-		<p>I am originally from Boston, but have been living in Colorado for some time now. In my spare time I try to keep pace with my energentic golden, hike and ski, and occassionally post something interesting.</p>
+		{% include about-me.html %}
 	</aside>
 </section>
+
+<h2 class="recent-posts-title">Travel</h2>
 <section class="recent-posts">
-	{% for post in site.posts limit: 3 %}
+	{% for post in site.categories.travel limit: 3 %}
+	<section>
+		<h3>{{ post.title }}</h3>
+		{% if post.subtitle %}
+		<h4>{{ post.subtitle }}</h4>
+		{% endif %}
+		<figure>
+			<img src="{{ post.banner }}" width="400" height="200" />
+			<figcaption>
+				<p>{{ post.abstract }}</p> <!-- TODO: Truncation -->
+				<a href="{{ post.url }}">Read More</a>
+			</figcaption>
+		</figure>
+	</section>
+	{% endfor %}
+</section>
+
+<h2 class="recent-posts-title">Tech & Coding</h2>
+<section class="recent-posts">
+	{% for post in site.categories.dev-posts limit: 3 %}
 	<section>
 		<h3>{{ post.title }}</h3>
 		{% if post.subtitle %}
