@@ -40,19 +40,24 @@
 
 .recent-posts {
 	color: #333;
-	display: none;
 	overflow: hidden;
 	margin: 50px auto 0;
 	flex-wrap: wrap;
 	justify-content: center;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
 
 	> section {
 		float: left;
-        width: 25%;
+        width: 70%;
 		text-align: center;
 
 		+ section {
 			margin-left: 5%;
+			display: none;
 		}
 
 		img {
@@ -86,10 +91,12 @@
 	}
 
 	@include bp(tablet){
-    	display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
+    	> section {
+    		width: 25%;
+
+    		+ section {
+    			display: block !important;
+    		}
+    	}	
     }
 }
