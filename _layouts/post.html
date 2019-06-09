@@ -1,26 +1,35 @@
----
-layout: default
----
+{% include post-top.html %}
+  <body>
+    <div id="wrapper" class="wrapper">
+      
+      {% include header.html %}
 
-<section class="post-wrapper">
-	<article class="post">
-		<hgroup>
-			<div class="post-title">
-				<h3>{{ page.title }}</h3>
-				{% if page.subtitle %}
-				<h4>{{ page.subtitle }}</h4>
-				{% endif %}
-			</div>
-			<h5>{{ page.date | date: "%B %e, %Y" }}</h5>
-		</hgroup>
-		<p>
-		{{ content }}
-		</p>	
-		<p>
-			<strong>Tags:</strong>
-			{{ page.tags }}
-		</p>
-		<a href="/posts">Back to Posts</a>
-	</article>
-	{% include sidebar.html %}
-</section>
+      <section class="main-content">
+      	<section class="post-wrapper">
+			<article class="post">
+				<hgroup>
+					<div class="post-title">
+						<h3>{{ page.title }}</h3>
+						{% if page.subtitle %}
+						<h4>{{ page.subtitle }}</h4>
+						{% endif %}
+					</div>
+					<h5>{{ page.date | date: "%B %e, %Y" }}</h5>
+				</hgroup>
+				<p>
+				{{ content }}
+				</p>	
+				<p>
+					<strong>Tags:</strong>
+					{{ page.tags }}
+				</p>
+				<a href="/posts">Back to Posts</a>
+			</article>
+			{% include sidebar.html %}
+		</section>
+      </section>
+    </div>
+
+    {% include analytics.html %}
+  </body>
+</html>
