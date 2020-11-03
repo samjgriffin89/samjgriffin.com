@@ -11,8 +11,6 @@ google_site_verification: cT3CHL7PrHfUex3GIuLkyjnk-deuZyedUYGqJGOKGEc
 # Build settings
 markdown: kramdown
 highlighter: rouge
-sass:
-  style: compressed
 
 plugins:
   - jekyll-feed
