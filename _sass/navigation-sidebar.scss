@@ -21,7 +21,7 @@ nav {
 .sidenav {
 	width: 100%;
 
-	@include  bp(tablet) {
+	@media only screen and (min-width: 768px) {
 		width: 35rem;
 	}
 
@@ -44,5 +44,16 @@ nav {
 	.about-me--content {
 		color: #fff;
 		margin: 0 6rem 2rem;
+	}
+
+	.social-icons {
+		li {
+			display: inline-block;
+		}
+
+		a {
+			width: 3.5rem;
+		}
+
 	}
 }
