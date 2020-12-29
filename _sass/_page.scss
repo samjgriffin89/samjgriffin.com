@@ -30,10 +30,19 @@ a {
     .page-title {
     	width: 85%;
     	margin: 0 auto;
-    	font-size: 2em;
+    	font-size: 3em;
+        font-family: staatliches;
     }
 
     p {
         line-height: 1.5;
+    }
+}
+
+.wishlist {
+    font-size: 2rem;
+
+    a {
+        font-size: 1.5rem;
     }
 }
