@@ -1,39 +1,28 @@
 /*
-Error: Undefined variable: "$royalBlue".
-        on line 9 of _sass/navigation-sidebar.scss
+Error: Undefined mixin 'bp'.
+        on line 24 of _sass/navigation-sidebar.scss, in `bp'
+        from line 24 of _sass/navigation-sidebar.scss
 
-4: 
-5: 	margin-top: 1.5rem;
-6: 	margin-left: .5rem;
-7: 
-8: 	.nav-wrapper a.btn {
-9: 		background-color: $royalBlue !important;
-10: 	}
-11: 
-12: 	@media only screen and (min-width: 400px) {
-13: 		nav .sidenav-trigger i, .nav-wrapper a.btn, .menu-icon {
-14: 			height: 3.5rem !important;
+19: }
+20: 
+21: .sidenav {
+22: 	width: 100%;
+23: 
+24: 	@include  bp(tablet) {
+25: 		width: 35rem;
+26: 	}
+27: 
+28: 	background: rgba(0, 0, 0, .75);
+29: 
 
 Backtrace:
-_sass/navigation-sidebar.scss:9
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/script/tree/variable.rb:49:in `_perform'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/script/tree/list_literal.rb:75:in `block in _perform'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/script/tree/list_literal.rb:75:in `map'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/script/tree/list_literal.rb:75:in `_perform'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:398:in `visit_prop'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
+_sass/navigation-sidebar.scss:24:in `bp'
+_sass/navigation-sidebar.scss:24
+C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:348:in `block in visit_mixin'
+C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/stack.rb:98:in `block in with_mixin'
 C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `map'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
+C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/stack.rb:98:in `with_mixin'
+C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:346:in `visit_mixin'
 C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
 C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
 C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
@@ -84,4 +73,4 @@ C:/Ruby27-x64/lib/ruby/gems/2.7.0/gems/sass-listen-4.0.0/lib/sass-listen/interna
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$royalBlue\".\A         on line 9 of _sass/navigation-sidebar.scss\A \A 4: \A 5: 	margin-top: 1.5rem;\A 6: 	margin-left: .5rem;\A 7: \A 8: 	.nav-wrapper a.btn {\A 9: 		background-color: $royalBlue !important;\A 10: 	}\A 11: \A 12: 	@media only screen and (min-width: 400px) {\A 13: 		nav .sidenav-trigger i, .nav-wrapper a.btn, .menu-icon {\A 14: 			height: 3.5rem !important;"; }
+  content: "Error: Undefined mixin 'bp'.\A         on line 24 of _sass/navigation-sidebar.scss, in `bp'\A         from line 24 of _sass/navigation-sidebar.scss\A \A 19: }\A 20: \A 21: .sidenav {\A 22: 	width: 100%;\A 23: \A 24: 	@include  bp(tablet) {\A 25: 		width: 35rem;\A 26: 	}\A 27: \A 28: 	background: rgba(0, 0, 0, .75);\A 29: "; }

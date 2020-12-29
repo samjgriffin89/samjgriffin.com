@@ -3,13 +3,13 @@ nav {
 	box-shadow: none;
 
 	margin-top: 1.5rem;
-	margin-left: .5rem;
 
 	.nav-wrapper a.btn {
-		background-color: $royalBlue !important;
+		margin-left: 0;
+		background-color: #273f87 !important;
 	}
 
-	@media only screen and (min-width: 400px) {
+	@media only screen and (min-width: 200px) {
 		nav .sidenav-trigger i, .nav-wrapper a.btn, .menu-icon {
 			height: 3.5rem !important;
 			line-height: 2.5rem !important;
@@ -19,7 +19,12 @@ nav {
 }
 
 .sidenav {
-	width: 35rem;
+	width: 100%;
+
+	@include  bp(tablet) {
+		width: 35rem;
+	}
+
 	background: rgba(0, 0, 0, .75);
 
 	li a {
