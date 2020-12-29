@@ -1,102 +1,15 @@
-.about-me {
-	width: 100%;
-	margin: 0 auto;
-	overflow: hidden;
-
-	.about-me--img {
-		text-align: center;
-	}
-
-	.about-me--content {
-		width: 80%;
-		margin: 0 10%;
-
-		a {
-			color: $primaryColor;
-		}
-	}
-
-	@include bp(tablet){
-		width: 80%;
-
-		.about-me--img, .about-me--content {
-			float: left;
-		}
-
-		.about-me--content {
-			width: 60%;
-			margin-left: 5%;
-		}
-	}
-}
-
-.recent-posts-title {
-	margin: 50px 0 0 0;
-	font-size: 2.5em;
-	text-align: center;
-	padding-bottom: 10px;
-	border-bottom: 3px solid $primaryColor;
-}
-
-.recent-posts {
-	color: #333;
-	overflow: hidden;
-	margin: 50px auto 0;
-	flex-wrap: wrap;
-	justify-content: center;
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-
-	> section {
-		float: left;
-        width: 70%;
-		text-align: center;
-
-		+ section {
-			margin-left: 5%;
-			display: none;
-		}
-
-		img {
-			margin: 10px 0;
-		}
-
-		figcaption {
-			text-align: left;
-			font-family: $normalized_font_family;
-		}
-
-        a {
-            color: $primaryColor;
-        }
-	}
-
-	h2, h3, h4 {
+.homepage {
+	h1 {
+		color: $royalBlue;
+		font-family: staatliches;
+		font-size: 5rem;
 		margin: 0;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-
-        a {
-            color: #333;
-        }
 	}
 
-	h3 {
-		font-size: 20px;
-		text-transform: uppercase;
+	h2 {
+		color: $tangerine;
+		font-size: 2.5rem;
+		font-family: lobster;
+		margin: 0;
 	}
-
-	@include bp(tablet){
-    	> section {
-    		width: 25%;
-
-    		+ section {
-    			display: block !important;
-    		}
-    	}	
-    }
 }

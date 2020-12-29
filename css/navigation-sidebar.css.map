@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,GAAI,CACH,UAAU,CAAE,IAAI,CAChB,UAAU,CAAE,IAAI,CAEhB,UAAU,CAAE,MAAM,CAClB,WAAW,CAAE,KAAK,CAMlB,cAAW,CACV,MAAM,CAAE,iBAAiB,CACzB,WAAW,CAAE,iBAAiB,CAC9B,SAAS,CAAE,iBAAiB",
+"sources": ["../_sass/navigation-sidebar.scss"],
+"names": [],
+"file": "navigation-sidebar.css"
+}

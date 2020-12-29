@@ -12,3 +12,7 @@
     @media (min-width: 650px)  { @content; }
   }
 }
+
+.display-always {
+  display: block !important;
+}

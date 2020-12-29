@@ -1,0 +1,44 @@
+<nav>
+	<div class="nav-wrapper">
+		<a href="#" data-target="side-nav" class="display-always sidenav-trigger btn">
+		<i class="material-icons menu-icon">menu</i></a>
+	</div>
+</nav>
+<div id="side-nav" class="sidenav">
+	<section class="about-me">
+		<div class="about-me--img center-align">
+			<a class="b-polygon b-polygon_hexagon" href="/">
+				<span class="b-polygon-part">
+					<span class="b-polygon-part b-polygon-part_content">
+						<img src="/images/lexi.jpg" alt="Sam Griffin is his dog" />
+					</span>
+				</span>
+			</a>
+		</div>
+		<aside class="about-me--content">
+			{% include about-me.html %}
+		</aside>
+	</section>
+	<ul>
+		<li>
+			<a href="/">Home</a>
+		</li>
+		<li>
+			<a href="/travel">Travel</a>
+		</li>
+		<li>
+			<a href="/dev-posts">Tech & Coding</a>
+		</li>
+		<li>
+			<a href="https://github.com/samjgriffin89">Projects</a>
+		</li>
+		<li>
+			<a href="https://gist.github.com/samjgriffin89">Code Snippets</a>
+		</li>
+	</ul>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#side-nav').sidenav();
+	});
+</script>
