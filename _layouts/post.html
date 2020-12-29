@@ -1,9 +1,7 @@
-{% include post-top.html %}
+{% include top.html %}
   <body>
-    <div id="wrapper" class="wrapper">
-      
-      {% include header.html %}
-
+    {% include navigation-sidebar.html %}
+	<div class="container">
       <section class="main-content">
       	<section class="post-wrapper">
 			<article class="post">
@@ -23,13 +21,12 @@
 					<strong>Tags:</strong>
 					{{ page.tags }}
 				</p>
-				<a href="/posts">Back to Posts</a>
+				<a href="javascript:history.back()">Back to Posts</a>
 			</article>
 			{% include sidebar.html %}
 		</section>
       </section>
     </div>
-
-    {% include analytics.html %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>

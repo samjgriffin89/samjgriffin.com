@@ -4,56 +4,13 @@ overview: true
 title: Homepage
 ---
 
-<section class="about-me">
-	<div class="about-me--img">
-		<a class="b-polygon b-polygon_hexagon" href="/">
-	    	<span class="b-polygon-part">
-	        	<span class="b-polygon-part b-polygon-part_content">
-					<img src="/images/me-and-dog.jpg" alt="Sam Griffin with his dog" />
-				</span>
-			</span>
-		</a>
+<div class="homepage row">
+	<div class="col s12 center-align">
+		<h1>Sam Griffin</h1>
+		<h2>Payments & POS Specialist</h2>
 	</div>
+</div>
 
-	<aside class="about-me--content">
-		{% include about-me.html %}
-	</aside>
-</section>
-
-<h2 class="recent-posts-title">Travel</h2>
-<section class="recent-posts">
-	{% for post in site.categories.travel limit: 3 %}
-	<section>
-		<h3>{{ post.title }}</h3>
-		{% if post.subtitle %}
-		<h4>{{ post.subtitle }}</h4>
-		{% endif %}
-		<figure>
-			<img src="{{ post.banner }}" width="400" height="200" />
-			<figcaption>
-				<p>{{ post.abstract }}</p> <!-- TODO: Truncation -->
-				<a href="{{ post.url }}">Read More</a>
-			</figcaption>
-		</figure>
-	</section>
-	{% endfor %}
-</section>
-
-<h2 class="recent-posts-title">Tech & Coding</h2>
-<section class="recent-posts">
-	{% for post in site.categories.dev-posts limit: 3 %}
-	<section>
-		<h3>{{ post.title }}</h3>
-		{% if post.subtitle %}
-		<h4>{{ post.subtitle }}</h4>
-		{% endif %}
-		<figure>
-			<img src="http://via.placeholder.com/400x200&text={{post.tags}}" alt="{{post.tags}}" />
-			<figcaption>
-				<p>{{ post.abstract }}</p> <!-- TODO: Truncation -->
-				<a href="{{ post.url }}">Read More</a>
-			</figcaption>
-		</figure>
-	</section>
-	{% endfor %}
-</section>
+<script type="text/javascript">
+	$('.main-content').css('background', 'none');
+</script>

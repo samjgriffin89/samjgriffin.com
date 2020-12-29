@@ -1,13 +1,11 @@
 {% include top.html %}
-  <body>
-    <div id="wrapper" class="wrapper">
-      
-      {% include header.html %}
-
-      <section class="main-content">
-      	{{ content }}
-      </section>
-    </div>
-
-  </body>
+<body>
+	{% include navigation-sidebar.html %}
+	<div class="container">
+		<section class="main-content">
+			{{ content }}
+		</section>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
 </html>

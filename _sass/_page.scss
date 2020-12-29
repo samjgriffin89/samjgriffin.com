@@ -1,4 +1,12 @@
-﻿img {
+﻿html { 
+  background: url(/images/background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+img {
     width: 100%;
 }
 
@@ -8,29 +16,22 @@
     }
 }
 
-.wrapper {
-	overflow: hidden;
-	margin: 0 auto;
-	background: #fff;
-
-    p {
-        line-height: 1.5;
-    }
+a {
+    color: $tangerine;
 }
 
 .main-content {
-    margin-top: 50px;
+    padding: 2rem;
+    color: #fff;
+    background: rgba(0, 0, 0, .7);
 
     .page-title {
     	width: 85%;
     	margin: 0 auto;
     	font-size: 2em;
     }
-}
 
-.clear-results {
-    display: inline-block;
-    font-size: 14px;
-    margin-top: 5px;
-    color: $primaryColor;
+    p {
+        line-height: 1.5;
+    }
 }
