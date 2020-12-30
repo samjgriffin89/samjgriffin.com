@@ -14,7 +14,6 @@ $(document).ready(function(){
 		$results.text("");
 
 		var uuidCountVal = $('#uuidCuont').val();
-
 		var numberToGenerate = uuidCountVal == "" ? 1 : parseInt(uuidCountVal);
 
 		var uuids = "";
@@ -25,7 +24,6 @@ $(document).ready(function(){
 		}
 
 		var cleanUuids = $('#cleanUuid').is(":checked");
-
 		if (cleanUuids)
 		{
 			uuids = uuids.replace(/-/g, '');
