@@ -1,0 +1,83 @@
+---
+layout: default
+overview: true
+title: Food Pics
+---
+
+<div class="row">
+	<div class="col s12 center-align">
+		<h1 class="page-title">Meals by Sam</h1>
+	</div>
+
+	<div id="gallery" class="foodpics" class="col s12">
+		<img class="foodpic" src="/images/food/gravlax.jpg" alt="Gravlax" />
+		<img class="foodpic" src="/images/food/spinach-sweet-potato.jpg" alt="Spinach Sweet Potato" />
+		<img class="foodpic" src="/images/food/air-fried-potatoes-spicy-mayo.jpg" alt="Air Fried Potatoes with Spicy Mayo" />
+		<img class="foodpic" src="/images/food/smoked-game-hen.jpg" alt="Smoked Game Hen" />
+	</div>
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/nanogallery2@3/dist/jquery.nanogallery2.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+    	$("#gallery").nanogallery2({
+      		items: [
+	    		{
+		          src:          '/images/food/latkes.jpg', 
+		          srct:         '/images/food/latkes.jpg',
+		        },
+		        {
+		          src:          '/images/food/gravlax.jpg', 
+		          srct:         '/images/food/gravlax.jpg',
+		        },
+		        {
+		          src:          '/images/food/spinach-sweet-potato.jpg', 
+		          srct:         '/images/food/spinach-sweet-potato.jpg',
+		        },
+		        {
+		          src:          '/images/food/air-fried-potatoes-spicy-mayo.jpg', 
+		          srct:         '/images/food/air-fried-potatoes-spicy-mayo.jpg',
+		        },
+		        {
+		          src:          '/images/food/smoked-game-hen.jpg', 
+		          srct:         '/images/food/smoked-game-hen.jpg',
+		        }
+		    ],
+		  
+		  	// GALLERY AND THUMBNAIL LAYOUT
+	        thumbnailHeight: '250', thumbnailWidth: 'auto',
+	        galleryDisplayMode: 'pagination',                 // gallery pagination mode
+	        galleryMaxRows: 3,                                // gallery with max 3 rows
+	        //gallerySorting: 'random',
+	        thumbnailAlignment: 'fillWidth',
+	        thumbnailL1GutterWidth: 20,
+	        thumbnailL1GutterHeight: 20,
+	        thumbnailBorderHorizontal: 1,
+	        thumbnailBorderVertical: 1,
+
+	        // THUMBNAIL TOOLS & LABEL
+	        thumbnailL1Label: { display: true, position:'overImageOnTop', hideIcons: true, titleFontSize: '1.5em', align: 'left'},
+	        thumbnailToolbarImage :  { topLeft: 'select', bottomRight : 'featured,display,download,info,cart' },
+
+	        // DISPLAY ANIMATION
+	        thumbnailDisplayTransition: 'flipUp',       // thumbnail display animation
+	        thumbnailDisplayTransitionDuration: 400,
+	        thumbnailDisplayInterval: 200,
+	        thumbnailDisplayOrder: 'rowByRow',
+
+	        // THUMBNAIL'S HOVER ANIMATION
+	        thumbnailHoverEffect2: 'toolsSlideUp|labelSlideDown',
+	        touchAnimation: true,
+	        touchAutoOpenDelay: -1,
+
+	        // GALLERY THEME
+	        galleryTheme : { 
+	          thumbnail: { titleShadow : 'none', descriptionShadow : 'none', titleColor: '#fff', borderColor: '#fff' },
+	          navigationPagination :  { background: '#3C4B5B', color: '#fff', colorHover: '#aaa', borderRadius: '4px' },
+	        },
+	          
+	        // DEEP LINKING
+	        locationHash: true
+		});
+	});
+</script>
