@@ -1,15 +1,38 @@
 .homepage {
+	padding: 3rem 0;
+	margin-top: 2rem;
+	
 	h1 {
 		color: $royalBlue;
-		font-family: staatliches;
-		font-size: 5rem;
-		margin: 0;
+		font-family: var(--font-heading);
+		font-size: clamp(3rem, 8vw, 5rem);
+		font-weight: 700;
+		margin: 0 0 1rem 0;
+		text-shadow: 0 2px 8px rgba(0,0,0,0.1);
+		letter-spacing: -0.02em;
+		line-height: 1.1;
+		animation: fadeInUp 0.8s ease-out;
 	}
 
 	h2 {
 		color: $tangerine;
-		font-size: 2.5rem;
-		font-family: lobster;
+		font-size: clamp(1.5rem, 4vw, 2.5rem);
+		font-family: var(--font-primary);
+		font-weight: 400;
 		margin: 0;
+		text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+		letter-spacing: 0.01em;
+		animation: fadeInUp 0.8s ease-out 0.2s both;
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }

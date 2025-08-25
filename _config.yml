@@ -19,3 +19,4 @@ plugins:
 exclude:
   - .gitignore
   - README.md
+  - vendor
