@@ -9965,10 +9965,12 @@ input {
   .homepage .quick-links {
     margin-top: 4rem; }
     .homepage .quick-links h3 {
-      color: #273f87;
+      color: white;
       font-size: 2rem;
       margin-bottom: 2rem;
-      font-weight: 600; }
+      font-weight: 600;
+      text-align: center;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
     .homepage .quick-links .links-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -9982,23 +9984,28 @@ input {
         text-decoration: none; }
       .homepage .quick-links .link-card .card {
         height: 100%;
-        border-radius: 12px;
+        border-radius: 20px;
         transition: all 0.3s ease;
-        border: 1px solid rgba(0, 0, 0, 0.05); }
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
         .homepage .quick-links .link-card .card:hover {
           transform: translateY(-5px);
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); }
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+          border-color: rgba(255, 255, 255, 0.2); }
         .homepage .quick-links .link-card .card .card-content {
           padding: 2rem; }
           .homepage .quick-links .link-card .card .card-content i {
-            color: #dea450;
+            color: #0693e3;
             margin-bottom: 1rem; }
           .homepage .quick-links .link-card .card .card-content h5 {
-            color: #273f87;
+            color: white;
             margin: 1rem 0;
-            font-weight: 600; }
+            font-weight: 600;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
           .homepage .quick-links .link-card .card .card-content p {
-            color: #666;
+            color: rgba(255, 255, 255, 0.8);
             margin: 0;
             line-height: 1.5; }
 
