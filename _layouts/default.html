@@ -5,6 +5,13 @@ layout: compress
 {% include top.html %}
 <body>
 	 <!-- {% include navigation-sidebar.html %} -->
+	{% unless page.overview %}
+	<div class="floating-home-btn">
+		<a href="/" class="home-icon">
+			<i class="material-icons">arrow_back</i>
+		</a>
+	</div>
+	{% endunless %}
 	<div class="container">
 		<section class="main-content">
 			{{ content }}
