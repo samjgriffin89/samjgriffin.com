@@ -4,7 +4,18 @@ layout: compress
 
 {% include top.html %}
 <body>
-	 <!-- {% include navigation-sidebar.html %} -->
+	<header class="site-header">
+		<div class="header-inner">
+			<a href="/" class="header-logo">
+				<img src="/images/headshot.jpg" alt="Home" />
+			</a>
+			<nav class="header-nav">
+				<a href="/#about">About</a>
+				<a href="/#experience">Experience</a>
+				<a href="/#contact">Contact</a>
+			</nav>
+		</div>
+	</header>
 	{% unless page.overview %}
 	<div class="floating-home-btn">
 		<a href="/" class="home-icon">
