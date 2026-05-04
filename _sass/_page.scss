@@ -38,37 +38,35 @@ input {
     .header-inner {
         max-width: 960px;
         margin: 0 auto;
-        padding: 0 2rem;
+        padding: 0 1rem 0 2rem;
         height: 60px;
         display: flex;
-        align-items: center;
+        align-items: baseline;
         justify-content: space-between;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     .header-logo {
-        display: flex;
-        align-items: center;
+        font-family: 'Monaco', 'Consolas', monospace;
+        font-size: 1rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.5);
         text-decoration: none;
+        letter-spacing: -0.03em;
+        transition: color 0.2s;
+        line-height: 1;
 
-        img {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            transition: border-color 0.2s;
-            display: block;
-        }
-
-        &:hover img {
-            border-color: $primaryColor;
+        &:hover {
+            color: $primaryColor;
         }
     }
 
     .header-nav {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         gap: 2rem;
+        margin-left: 2rem;
 
         a {
             color: rgba(255, 255, 255, 0.5);
@@ -78,6 +76,7 @@ input {
             letter-spacing: 0.08em;
             text-transform: uppercase;
             transition: color 0.2s;
+            line-height: 1;
 
             &:hover {
                 color: #fff;
@@ -85,7 +84,8 @@ input {
         }
 
         @media (max-width: 540px) {
-            display: none;
+            gap: 1.25rem;
+            margin-left: 1rem;
         }
     }
 }
