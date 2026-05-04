@@ -47,84 +47,58 @@
 	    margin-top: -1rem;
     }
 
-	> div {
-		margin-top: 0;
-	}
+	> div { margin-top: 0; }
 
 	h4 {
 		font-family: var(--font-heading);
-		font-size: 1.4rem;
+		font-size: 1.2rem;
 		font-weight: 600;
-		color: white;
-		margin: 0 0 1.5rem;
-		text-transform: none;
+		color: #f0f0f0;
+		margin: 0 0 1.25rem;
 		letter-spacing: -0.01em;
-		padding-top: 0;
-		text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-	}
-
-	.posts-search {
-		input {
-			width: 180px;
-			line-height: 1.7;
-			margin-right: 10px;
-		}
-
-		.primary-btn {
-			position: relative;
-			bottom: 1px;
-		}
 	}
 
 	.about--side {
-		background: rgba(0, 0, 0, 0.75);
-		backdrop-filter: blur(15px);
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		border-radius: 20px;
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-		padding: 1rem 2rem;
+		background: #1a1a1a;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 16px;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+		padding: 1.5rem 2rem;
 		margin: 0;
 		position: relative;
 		overflow: hidden;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		
+		transition: all 0.2s ease;
+
 		&::before {
 			content: '';
 			position: absolute;
 			top: 0;
 			left: 0;
 			right: 0;
-			height: 4px;
+			height: 3px;
 			background: linear-gradient(90deg, $primaryColor, $tangerine);
 		}
-		
+
 		&:hover {
 			transform: translateY(-2px);
-			box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-			backdrop-filter: blur(20px);
-			border-color: rgba(255, 255, 255, 0.2);
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
 		}
 
 		p {
-			font-family: var(--font-primary);
-			font-size: 1rem;
+			font-size: 0.95rem;
 			line-height: 1.7;
-			color: rgba(255, 255, 255, 0.9);
-			margin-bottom: 1.5rem;
-			
-			&:last-child {
-				margin-bottom: 0;
-			}
+			color: #aaa;
+			margin-bottom: 1rem;
+			&:last-child { margin-bottom: 0; }
 		}
 
 		a {
 			color: $primaryColor;
 			text-decoration: none;
 			font-weight: 500;
-			transition: color 0.3s ease;
-			
+
 			&:hover {
-				color: white;
+				color: darken($primaryColor, 10%);
 				text-decoration: underline;
 			}
 		}
@@ -132,39 +106,37 @@
 }
 
 .post {
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    color: rgba(255, 255, 255, 0.9);
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    color: #ccc;
     width: 90%;
     margin: 2rem auto;
     padding: 2.5rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.25s ease;
     position: relative;
     overflow: hidden;
-    
+
     @media (min-width: 768px) {
         width: 85%;
         padding: 3rem;
     }
-    
+
     &::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 4px;
+        height: 3px;
         background: linear-gradient(90deg, $primaryColor, $tangerine);
     }
-    
+
     &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(20px);
-        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-color: #d5d5d5;
     }
 
 	hgroup {
@@ -172,7 +144,7 @@
 		flex-direction: column;
 		gap: 0.5rem;
 		margin-bottom: 1.5rem;
-		
+
 		@media (min-width: 768px) {
 			flex-direction: row;
 			justify-content: space-between;
@@ -180,58 +152,50 @@
 		}
 	}
 
-	h3, h4, h5 {
-		margin: 0;
-	}
+	h3, h4, h5 { margin: 0; }
 
 	.post-title {
 		flex: 1;
 		margin-bottom: 0.5rem;
-		
-		@media (min-width: 768px) {
-			margin-bottom: 0;
-		}
+
+		@media (min-width: 768px) { margin-bottom: 0; }
 	}
 
 	h3 {
 		font-family: var(--font-heading);
-		font-size: clamp(1.5rem, 4vw, 2rem);
+		font-size: clamp(1.4rem, 4vw, 1.9rem);
 		font-weight: 600;
-		color: white;
+		color: #f0f0f0;
 		line-height: 1.3;
 		margin-bottom: 0.5rem;
-		transition: color 0.3s ease;
-		text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-		
+
 		a {
 			color: inherit;
 			text-decoration: none;
-			transition: color 0.3s ease;
-			
-			&:hover {
-				color: $primaryColor;
-			}
+			transition: color 0.2s;
+
+			&:hover { color: $primaryColor; }
 		}
 	}
 
 	h4 {
 		font-family: var(--font-primary);
-		font-size: 1.1rem;
+		font-size: 1rem;
 		font-weight: 400;
-		color: rgba(255, 255, 255, 0.8);
+		color: #777;
 		margin-top: 0.25rem;
 	}
 
 	h5 {
 		font-family: var(--font-primary);
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 		font-weight: 500;
-		color: rgba(255, 255, 255, 0.7);
+		color: #666;
 		text-transform: uppercase;
-		letter-spacing: 0.5px;
+		letter-spacing: 0.05em;
 		white-space: nowrap;
 		margin-top: 0.5rem;
-		
+
 		@media (min-width: 768px) {
 			margin-top: 0;
 			margin-left: 2rem;
@@ -240,55 +204,49 @@
 
 	.post-abstract {
 		font-family: var(--font-primary);
-		font-size: 1.1rem;
-		line-height: 1.7;
-		color: rgba(255, 255, 255, 0.85);
+		font-size: 1rem;
+		line-height: 1.75;
+		color: #aaa;
 		margin-bottom: 2rem;
 	}
 
 	a:not(.post-title a) {
 		display: inline-flex;
 		align-items: center;
-		padding: 0.75rem 1.5rem;
-		background: linear-gradient(135deg, $primaryColor, #0579c2);
+		padding: 0.6rem 1.25rem;
+		background: $primaryColor;
 		color: white;
-		border-radius: 25px;
+		border-radius: 6px;
 		text-decoration: none;
 		font-weight: 500;
-		font-size: 0.95rem;
-		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-		box-shadow: 0 4px 15px rgba(6, 147, 227, 0.3);
-		letter-spacing: 0.3px;
-		text-transform: uppercase;
-		
+		font-size: 0.85rem;
+		transition: all 0.2s ease;
+		letter-spacing: 0.03em;
+
 		&:hover {
-			background: linear-gradient(135deg, #0579c2, #0461a3);
-			transform: translateY(-2px);
-			box-shadow: 0 8px 25px rgba(6, 147, 227, 0.4);
+			background: darken($primaryColor, 8%);
+			transform: translateY(-1px);
 		}
-		
+
 		&::after {
 			content: '→';
-			margin-left: 0.5rem;
-			transition: transform 0.3s ease;
+			margin-left: 0.4rem;
+			transition: transform 0.2s;
 		}
-		
-		&:hover::after {
-			transform: translateX(3px);
-		}
+
+		&:hover::after { transform: translateX(3px); }
 	}
 
 	code {
-		font-size: 0.9em;
-		background: rgba(0, 0, 0, 0.05);
-		padding: 0.2em 0.4em;
+		font-size: 0.875em;
+		background: #f4f4f4;
+		padding: 0.15em 0.4em;
 		border-radius: 4px;
 		font-family: 'Monaco', 'Consolas', monospace;
+		color: #333;
 	}
 
-	.tags {
-		display: inline-block;
-	}
+	.tags { display: inline-block; }
 }
 
 .post-wrapper .post {
